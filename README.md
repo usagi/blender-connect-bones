@@ -7,7 +7,7 @@ Note: 日本語参考 → <https://usagi.hatenablog.jp/entry/2020/04/12/110722>
 ## Feature
 
 1. Make a `Connected` parent-child bone pair(s) automatically.
-2. With REGEX pattern filtering, head-tail position tolerance( relative, absolute ).
+2. With REGEX pattern filtering, head-tail position tolerance( distance absolute ).
 3. Keyboardshortcut `CTRL + SHIFT + ALT + C` in `3D View` -> REGEX dialogue -> Execute!
 4. Or, `bpy.ops.armature.connect_bones( name_regex = 'Neko' )` in `Python Console` -> Execute!
 
@@ -19,7 +19,7 @@ Note: 日本語参考 → <https://usagi.hatenablog.jp/entry/2020/04/12/110722>
     <td><img src="https://i.imgur.com/p9Wj13e.png" /> <p>*After*; There are connected!</p>
   </tr>
   <tr>
-    <td><img src="https://i.imgur.com/wDoXqw1.png" /> <p>Use the add-on with the keyboard shortcut `CTRL + SHIFT + ALT + C` then you can use the regex filter pattern dialogue.</p>
+    <td><img src="https://i.imgur.com/Pdw2S54.png" /> <p>Use the add-on with the keyboard shortcut `CTRL + SHIFT + ALT + C` then you can use the regex filter pattern dialogue.</p>
     <td><img src="https://i.imgur.com/iW2qdTy.png" /> <p>Use the add-on with the `Python Console` feature.</p>
   </tr>
 </table>
