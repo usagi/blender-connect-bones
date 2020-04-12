@@ -14,6 +14,7 @@ addon_keymaps = []
 import bpy
 from itertools import chain
 from re import compile
+import numpy
 
 class ConnectBones( bpy.types.Operator ):
  '''Connect bones if it find a bone pair that has a same position of a head and a tail'''
@@ -22,9 +23,10 @@ class ConnectBones( bpy.types.Operator ):
  bl_options = { 'REGISTER', 'UNDO' }
  
  name_regex: bpy.props.StringProperty( name = 'name_regex', default = '.*' )
+ tolerance: bpy.props.FloatProperty( name = 'tolerance', default = 0.0 )
  
  def execute( self, context ):
-  return connect_bones( self.name_regex )
+  return connect_bones( self.name_regex, self.tolerance )
 
 def register():
  bpy.utils.register_class( ConnectBones )
@@ -52,7 +54,7 @@ if __name__ == '__main__':
 
 ### The main code of the add-on ###
 
-def connect_bones( name_regex ):
+def connect_bones( name_regex = '.*', tolerance = 0.0 ):
  bpy.ops.object.mode_set(mode='EDIT')
  
  armatures = bpy.data.armatures
@@ -62,9 +64,11 @@ def connect_bones( name_regex ):
  
  filtered_bones = [ b for b in bones if regex.match( b.name ) ]
  
+ is_close = ( lambda a, b: a == b ) if tolerance == 0.0 else ( lambda a, b: numpy.isclose( numpy.linalg.norm( a - b ), 0.0, atol = tolerance ) )
+ 
  def find_connectable_pair( parent ):
   for candidate in filtered_bones:
-   if parent.tail == candidate.head:
+   if is_close( parent.tail, candidate.head ):
     return ( parent, candidate )
  
  connectable_pairs = [ p for p in map( find_connectable_pair, filtered_bones ) if p != None ]
