@@ -5,7 +5,7 @@ bl_info = {
  'blender' : ( 2, 80, 0 ),
  'category': 'Armature',
  'author'  : 'USAGI.NETWORK / Usagi Ito',
- 'version' : ( 0, 0, 0 ),
+ 'version' : ( 0, 1, 0 ),
  'support' : 'TESTING',
 }
 
